@@ -1,8 +1,9 @@
 /*
 So kya kare phir ? karna kya hai ???
 number of ways to set up the 
-1 knight in nxn matrix = n2 positions
-2 knights  = ( n2 * n2-1 ) / 2 
+1 knight in nxn matrix = n^2 positions
+2 knights  = (  n^2-1 ) / 2 
+toh total = n^2  * (  n^2-1 ) / 2
 so knight jo hai L shape meh attack karta hai..hmm so 
 2x3 ya 3x2 ka attack matrix banega hai nah !? 
 2x3 ke kitne matrix in nxn = n-1 * n-2 
