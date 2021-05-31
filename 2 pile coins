@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+#include <iostream>
+
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+    ll n , a , b , mini = 0 , maxi=0   ;
+    cin>>n;
+
+    for(ll i =0 ; i<n ; i++){
+        cin>>a;
+        cin>>b ;
+       mini = min(a,b);
+       maxi = max(a,b);
+
+       if((a+b)%3 != 0  )
+       {
+           cout<<"NO\n";
+       }
+
+        else{
+
+            if( a==0 && b == 0)
+                cout<<"YES\n";
+
+            else if( mini*2 >= maxi){
+
+
+
+                 if( a==0 & b!=0 )
+                cout<<"NO\n";
+
+                else if( b==0 & a!=0 )
+                cout<<"NO\n";
+
+                else
+                cout<<"YES\n";
+
+      }
+
+      else
+        cout<<"NO\n";
+    }
+
+}
+    return 0;
+}
