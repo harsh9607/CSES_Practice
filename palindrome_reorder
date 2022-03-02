@@ -1,0 +1,140 @@
+#include<bits/stdc++.h>
+#include <iostream>
+#include <cstring>
+ 
+using namespace std;
+ // Ascii 65 to 90 is A to Z 
+ typedef long long ll;
+ 
+ 
+int main()
+{   ll size_of_string = 0 , is_even = -1 , is_odd = 1  ;
+     
+ 
+    int bucket[26] = {0} ;
+    //later make an input funtion for string input 
+    string  s1 ;
+    cin>>s1;
+    for(int i=0 ; s1[i]!='\0' ; ++i )
+    {
+        size_of_string++ ; 
+        
+        // counting each alphabet 
+        char ch = s1[i]; 
+        //  mapping of char to it ASCII value 
+        int  x  = int(ch); 
+        // finding its index for our bucket array 
+        x =  x - 65 ; 
+        bucket[x] = bucket[x] + 1 ; 
+         
+        
+    }
+   
+  char ans[size_of_string] ;
+   
+    
+    // Check if even string or odd string
+    if(size_of_string % 2 == 0 )
+    {
+        is_even = 1;
+        is_odd = -1; 
+    }
+    
+    if (is_even == 1 )
+    {
+        
+        // check if palindrome even possible; for that number of odd strings must be zero 
+        int odd_ctr = 0 ;
+        for(int i=0 ; i<26;i++)
+        {
+            if(bucket[i]%2 !=  0 )
+            {
+                odd_ctr++; 
+                 
+            }
+        }
+        
+        if(odd_ctr >0 )
+        {
+            strcpy(ans, "NO SOLUTION"); 
+        }
+        
+        else
+        {
+            // now lets create a palindrome
+            int j=0;
+            while(j<size_of_string/2){
+                 
+                for(int i=0 ; i<26;i++)
+                {
+                    while(bucket[i] != 0 )
+                     {ans[j] = char(i + 65);
+                     ans[size_of_string - j - 1 ] = char(i + 65);
+                     j=j+1;
+                     bucket[i] = bucket[i]-2;
+                     }
+            
+                }
+                
+            }
+            
+        ans[size_of_string]='\0'; 
+            
+        }
+    
+        
+        
+    }
+    
+    
+    
+    else
+    {
+        
+        // check if palindrome even possible; for that number of odd strings must be zero 
+        int odd_ctr = 0 ,index =0;
+        for(int i=0 ; i<26;i++)
+        {
+            if(bucket[i]%2 !=  0 )
+            {
+                odd_ctr++; 
+                index = i;
+                 
+            }
+        }
+        
+        if(odd_ctr >1 )
+        {
+            strcpy(ans, "NO SOLUTION"); 
+        }
+        
+        else
+        {
+            // now lets create a palindrome
+            int i=0, j=0 , mid = (size_of_string/2)  ;
+            
+            ans[mid] = char(index+65); 
+             bucket[index]--; 
+            
+            
+                for(int k =0 ; k<26; k++)
+                {
+                    while(bucket[k]!=0 && i<=mid){
+                    ans[i] = char(k+65); 
+                    ans[size_of_string - i - 1] = char(k+65);
+                    bucket[k] = bucket[k]-2;
+                    i++;    
+                    }
+                    
+                    
+                }
+                     
+        ans[size_of_string]='\0'; 
+            
+        }
+  
+    }
+   
+    cout<<ans; 
+    return 0;
+}
