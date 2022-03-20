@@ -1,0 +1,45 @@
+// GRAY CODE GENERATOR USING C++17 for 2^16 bits at max
+#include <iostream>
+#include<cmath>
+
+using namespace std;
+
+
+int main()
+{
+    int size;
+    cout<<"Enter the value of n for which 2^n bits of gray code will  be generated : ";
+    cin>>size;
+    
+    string str[65536] = {}; 
+    string str2[65536]={}; 
+    //GreyCode(str, size); 
+    
+    for(int i = 1 ; i <=size ; i++ )
+    {
+      
+        int total_num_ele = pow(2,i);
+        for(int j=0 ; j<total_num_ele/2; j++)
+        {
+            str[j] = "0"+ str[j]; 
+        }
+        //str2=str;
+       
+        for(int j=total_num_ele/2 ; j<total_num_ele; j++)
+        {
+            str[j] = "1"+ str2[total_num_ele - j - 1]; 
+        }    
+    
+        
+         copy( str, str +total_num_ele, str2 );
+    
+        
+    }
+    
+    for(int i=0 ; i<pow(2,size) ; i++)
+    {
+        cout<<str[i]<<endl;
+    }
+   
+    return 0;
+}
